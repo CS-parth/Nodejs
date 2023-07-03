@@ -1,0 +1,6 @@
+Keeps details about the project like whats the version,git repositories
+any Profile data
+
+Let us suppose we have addded too many packages in the peoject file then all these packages are managed in the Package.json file
+buil command,test command are also in this 
+details related to coding 
