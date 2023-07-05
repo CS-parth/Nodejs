@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+</head>
+<body>
+    <!-- <%= include('common/nav'); %> -->
+    <!-- In EJS comments are treated as plain text and not as comments so if we write a wrong code and commented it then the server wil throw an error  -->
+    <!-- = for JS and - for html content  -->
+    <%- include('common/nav'); %>
+    <h1>This is my Profile page</h1>
+    <h1>Name: <%= user.name %></h1>
+    <h1>E-mail: <%= user.email %></h1>
+    <h1>City: <%= user.city %></h1>
+</body>
+</html>
