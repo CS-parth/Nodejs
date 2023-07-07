@@ -3,26 +3,25 @@
 // blocking a site in a country
 
 const express = require('express');
+const reqFilter = require('./middleware'); 
+
 const app = express();
+const route = express.Router();
 
-const reqFilter = (req,res,next)=>{
-    console.log('reqFilter');
-    if(!req.query.age){
-        res.send("please provide age");
-    }else if(req.query.age < 18){
-        res.send("You can not access this page");
-    }else{
-        next();
-    }
- // We have to use next otherwise The page wont load 
-}
+// app.use(reqFilter);
 
-app.use(reqFilter);
-
+route.use(reqFilter);
 app.get('*',(req,res)=>{
     res.send('Welcome to my Server');
 })
+app.get('/about',reqFilter,(req,res)=>{ // As same way can be applied on the other 
+    res.send('Welcome to my About Page');
+})
+route.get('/home',(req,res)=>{
+    res.send('Welcome to my Home Page');
+})
 
+app.use('/',route);
 app.listen(4500,()=>{
     console.log("Welcome to my server");
 })
