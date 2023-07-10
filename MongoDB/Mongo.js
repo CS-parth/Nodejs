@@ -1,21 +1,21 @@
-const { MongoClient } = require('mongodb');
+const dbConnect = require('./mongodb');
 
-const url = 'mongodb://localhost:27017'; 
-const database = 'E-commerce'; 
+// Promise --> On any heavy operation 
+// JS is async language it does not wait for the heavy operation to be completed 
+/* when heavy operation takes time then the its result will be pending to handle these results we use promises*/
 
-async function getData() {
-  const client = new MongoClient(url);
-  try {
-    await client.connect();
-    const db = client.db(database);
-    const collection = db.collection('Products');
-    const response = await collection.find({}).toArray();
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    await client.close();  
-  }
+// dbConnect().then((res)=>{
+//   console.log(res.find().toArray().then((data)=>{
+//     console.warn(data);
+//   }));
+// })
+
+const main = async ()=>{
+  let data = await dbConnect();
+
+  data = await data.find().toArray();
+  console.warn(data);
+  console.log("main function called");
 }
 
-getData();
+main();
